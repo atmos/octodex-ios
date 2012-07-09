@@ -1,6 +1,7 @@
 class AppController < UIViewController
   def viewDidLoad
     self.init_views
+    self.feed
   end
 
   def init_views
@@ -20,18 +21,18 @@ class AppController < UIViewController
     @title.font = UIFont.systemFontOfSize(30)
     @title.backgroundColor = UIColor.whiteColor
 
-    @image = UIImage.imageNamed("octocats/heisencat.png")
-
     @image_view = UIImageView.alloc.initWithImage(@image)
     @image_view.contentMode = UIViewContentModeScaleAspectFit
 
     top = 30 + ((view.frame.size.height - view.frame.size.width) / 2.0)
     @image_view.frame = CGRectMake(0, top , view.frame.size.width-6, view.frame.size.width-6)
 
-    show_title("The Heisencat")
     view.addSubview(@image_view)
     view.addSubview(@header)
     view.addSubview(@title)
+
+    self.image_url = "http://octodex.github.com/images/original.jpg"
+    show_title("The Original")
   end
 
   def show_title(text)
@@ -48,8 +49,26 @@ class AppController < UIViewController
     true
   end
 
+  def feed
+    @feed ||= Feed.new
+  end
+
+  def random
+    cat = feed.random_octocat
+
+    puts cat.inspect
+
+    self.image_url = cat.image_url
+    show_title("The Heisencat")
+  end
+
   def motionEnded(motion, withEvent:event)
-    puts "ZOMG GIMME MOAR"
+    random
+  end
+
+  def image_url=(url)
+    image = UIImage.imageWithData(NSData.alloc.initWithContentsOfURL(NSURL.URLWithString(url)))
+    @image_view.image = image
   end
 
   # Enable rotation
