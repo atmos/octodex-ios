@@ -60,13 +60,22 @@ class AppController < UIViewController
     @feed ||= Feed.new
   end
 
-  def random
-    cat = feed.random_octocat
+  def octocats
+    feed.octocats
+  end
 
-    puts cat.inspect
+  def octocat
+    @octocat
+  end
 
+  def display_cat(cat)
     self.image_url = cat.image_url
-    show_title("The Heisencat")
+    show_title(cat.title)
+    @cat = cat
+  end
+
+  def random
+    display_cat(feed.random_octocat)
   end
 
   def motionEnded(motion, withEvent:event)
@@ -74,16 +83,32 @@ class AppController < UIViewController
   end
 
   def swipeNextGesture(gesture)
-    random
+    idx = octocats.index(octocat)
+    if idx == nil
+      random
+    elsif idx == octocats.size - 1
+      display_cat(octocats.first)
+    else
+      display_cat(octocats[idx + 1])
+    end
   end
 
   def swipePreviousGesture(gesture)
-    random
+    idx = octocats.index(octocat)
+    if idx == nil
+      random
+    elsif idx == 0
+      display_cat(octocats.last)
+    else
+      display_cat(octocats[idx - 1])
+    end
   end
 
   def image_url=(url)
+    @status_view.startAnimating
     image = UIImage.imageWithData(NSData.alloc.initWithContentsOfURL(NSURL.URLWithString(url)))
     @image_view.image = image
+    @status_view.stopAnimating
   end
 
   # Enable rotation
