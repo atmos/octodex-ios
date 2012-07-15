@@ -25,7 +25,7 @@ class AppController < UIViewController
     @image_view.contentMode = UIViewContentModeScaleAspectFit
 
     top = 30 + ((view.frame.size.height - view.frame.size.width) / 2.0)
-    @image_view.frame = CGRectMake(0, top, view.frame.size.width-10, view.frame.size.width-6)
+    @image_view.frame = CGRectMake(0, top, view.frame.size.width, view.frame.size.width-6)
 
     view.addSubview(@image_view)
     view.addSubview(@header)
