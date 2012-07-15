@@ -24,16 +24,16 @@ class Feed
     end
   end
 
-  # Delegate method
+  # Delegate methods
   def when_parser_initializes
-    p "The parser is ready!"
+    #p "The parser is ready!"
   end
 
   def when_parser_parses
-    p "The parser started parsing the document"
+    #p "The parser started parsing the document"
   end
 
   def when_parser_is_done
-    p "The feed is entirely parsed, congratulations!"
+    p 'Should disable loading page?'
   end
 end

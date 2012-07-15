@@ -105,10 +105,8 @@ class AppController < UIViewController
   end
 
   def image_url=(url)
-    @status_view.startAnimating
     image = UIImage.imageWithData(NSData.alloc.initWithContentsOfURL(NSURL.URLWithString(url)))
     @image_view.image = image
-    @status_view.stopAnimating
   end
 
   # Enable rotation
