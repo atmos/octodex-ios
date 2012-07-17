@@ -10,6 +10,7 @@ Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'Octodex'
 
+  app.device_family = [:iphone, :ipad]
   app.provisioning_profile = ENV['OCTODEX_PROVISIONING_PROFILE'] || "Error"
   app.codesign_certificate = ENV['OCTODEX_CODESIGN_CERTIFICATE'] || ""
 end
