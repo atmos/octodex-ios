@@ -71,7 +71,7 @@ class AppController < UIViewController
   def display_cat(cat)
     self.image_url = cat.image_url
     show_title(cat.title)
-    @cat = cat
+    @octocat = cat
   end
 
   def random
@@ -84,6 +84,7 @@ class AppController < UIViewController
 
   def swipeNextGesture(gesture)
     idx = octocats.index(octocat)
+
     if idx == nil
       random
     elsif idx == octocats.size - 1
@@ -95,6 +96,7 @@ class AppController < UIViewController
 
   def swipePreviousGesture(gesture)
     idx = octocats.index(octocat)
+
     if idx == nil
       random
     elsif idx == 0
