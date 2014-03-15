@@ -37,9 +37,7 @@ class AppController < UIViewController
     nextGesture = UISwipeGestureRecognizer.alloc.initWithTarget(self, action:'swipeNextGesture:')
     nextGesture.direction = UISwipeGestureRecognizerDirectionRight
     view.addGestureRecognizer(nextGesture)
-
-    self.image_url = "http://octodex.github.com/images/original.jpg"
-    show_title("The Original")
+    display_cat(octocats.first)
   end
 
   def show_title(text)
