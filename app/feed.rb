@@ -1,6 +1,9 @@
 class Feed
   def initialize
-    @octocats = [ ]
+    o=Octocat.new
+    o.title = "The Original"
+    o.image_url = "http://octodex.github.com/images/original.jpg"
+    @octocats = [o]
     self.update
   end
 
@@ -30,7 +33,7 @@ class Feed
   end
 
   def when_parser_parses
-    #p "The parser started parsing the document"
+    @octocats = []
   end
 
   def when_parser_is_done
