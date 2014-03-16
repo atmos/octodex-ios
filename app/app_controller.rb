@@ -14,7 +14,7 @@ class AppController < UIViewController
 
     @header.text = "The Octodex!"
     @header.sizeToFit
-    @header.center = [160, 25]
+    @header.center = [160, 40]
 
     @title = UILabel.alloc.initWithFrame([[0, 0], [0, 0]])
     @title.textColor = UIColor.blackColor
