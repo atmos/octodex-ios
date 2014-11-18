@@ -16,7 +16,7 @@ class Feed
   end
 
   def update
-    feed_parser = BW::RSSParser.new("http://octodex.herokuapp.com/feed.xml")
+    feed_parser = BW::RSSParser.new("https://feeds.feedburner.com/Octocats")
     feed_parser.delegate = self
     feed_parser.parse do |item|
       octocat = Octocat.new
